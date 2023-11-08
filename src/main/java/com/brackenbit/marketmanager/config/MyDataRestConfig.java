@@ -12,6 +12,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.brackenbit.marketmanager.entity.MarketEvent;
+import com.brackenbit.marketmanager.entity.MarketRecurrencePattern;
 import com.brackenbit.marketmanager.entity.Stallholder;
 import com.brackenbit.marketmanager.entity.StallholderCategory;
 
@@ -30,11 +31,13 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(Stallholder.class);
         config.exposeIdsFor(StallholderCategory.class);
         config.exposeIdsFor(MarketEvent.class);
+        config.exposeIdsFor(MarketRecurrencePattern.class);
 
         // Make automagic API read-only
         disableHttpMethods(Stallholder.class, config, unsupportedActions);
         disableHttpMethods(StallholderCategory.class, config, unsupportedActions);
         disableHttpMethods(MarketEvent.class, config, unsupportedActions);
+        disableHttpMethods(MarketRecurrencePattern.class, config, unsupportedActions);
 
         // Configure CORS mapping
         cors.addMapping(config.getBasePath() + "/**").allowedOrigins(allowedOrigins);

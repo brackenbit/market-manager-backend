@@ -26,13 +26,15 @@ public class Stallholder {
 
     private String name;
 
+    private String category;
+
     private String contactName;
 
-    private String contactPhone;
+    private String preferredName;
+
+    private String phone;
 
     private String email;
-
-    private String category;
 
     private boolean regular;
 
