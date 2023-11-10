@@ -11,12 +11,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.brackenbit.marketmanager.entity.Stallholder;
+import java.util.Optional;
 
 public interface StallholderRepository extends JpaRepository<Stallholder, Long> {
 
     // findAllByOrderByNameAsc is the "default GET" for this repo
     // Default findAll returns sorted by id, which is no good.
     Page<Stallholder> findAllByOrderByNameAsc(Pageable pageable);
+
+    Optional<Stallholder> findByName(String name);
 
     Page<Stallholder> findByNameContaining(@RequestParam("name") String name, Pageable pageable);
 

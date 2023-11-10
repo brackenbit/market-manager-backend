@@ -9,6 +9,8 @@
 
 package com.brackenbit.marketmanager.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +30,14 @@ public class AdminService {
         this.stallholderRepository = stallholderRepository;
     }
 
-    public void addStallholder(AddStallholderRequest addStallholderRequest) {
+    public void addStallholder(AddStallholderRequest addStallholderRequest) throws Exception {
+        // While id is the primary key of stallholder, name should also be unique.
+        // Throw exception if existing stallholder exists with this name.
+        Optional<Stallholder> validateStallholder = stallholderRepository.findByName(addStallholderRequest.getName());
+        if (validateStallholder.isPresent()) {
+            throw new Exception("Existing stallholder with this stall name.");
+        }
+
         Stallholder stallholder = new Stallholder();
         stallholder.setName(addStallholderRequest.getName());
         stallholder.setCategory(addStallholderRequest.getCategory());
