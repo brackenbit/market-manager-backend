@@ -1,6 +1,10 @@
 /*
  * Market Manager
  * (C) Brackenbit 2023
+ * 
+ * StallholderAttributeRequest
+ * Has corresponding attributes for all StallholderModel attributes except for id.
+ * Used to pass stallholder attributes for add/edit requests.
  */
 
 package com.brackenbit.marketmanager.requestModels;
@@ -8,7 +12,7 @@ package com.brackenbit.marketmanager.requestModels;
 import lombok.Data;
 
 @Data
-public class AddStallholderRequest {
+public class StallholderAttributeRequest {
 
     private String name;
     private String category;
