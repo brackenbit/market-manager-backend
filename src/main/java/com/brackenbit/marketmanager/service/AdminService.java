@@ -35,13 +35,14 @@ public class AdminService {
     public void addStallholder(StallholderAttributeRequest addStallholderRequest) throws Exception {
         // While id is the primary key of stallholder, name should also be unique.
         // Throw exception if existing stallholder exists with this name.
-        Optional<Stallholder> validateStallholder = stallholderRepository.findByName(addStallholderRequest.getName());
+        Optional<Stallholder> validateStallholder = stallholderRepository
+                .findByStallName(addStallholderRequest.getStallName());
         if (validateStallholder.isPresent()) {
             throw new Exception("Existing stallholder with this stall name.");
         }
 
         Stallholder stallholder = new Stallholder();
-        stallholder.setName(addStallholderRequest.getName());
+        stallholder.setStallName(addStallholderRequest.getStallName());
         stallholder.setCategory(addStallholderRequest.getCategory());
         stallholder.setContactName(addStallholderRequest.getContactName());
         stallholder.setPreferredName(addStallholderRequest.getPreferredName());
@@ -56,12 +57,17 @@ public class AdminService {
     public void editStallholder(Long id, StallholderAttributeRequest stallholderRequest) throws Exception {
         // Name should be unique, so check that they're not editing this
         // stallholder to have the same name as another one.
-        Optional<Stallholder> validateStallholder = stallholderRepository.findByName(stallholderRequest.getName());
+        Optional<Stallholder> validateStallholder = stallholderRepository
+                .findByStallName(stallholderRequest.getStallName());
 
         validateStallholder.ifPresent(theStallholder -> {
-            if (theStallholder.getName() == stallholderRequest.getName()) {
-                throw new EntityExistsException("Existing stallholder with this name.");
+            // Throw exception if there exists a stallholder with the same name but different ID.
+            if (theStallholder.getId() != id) {
+                if (theStallholder.getStallName() == stallholderRequest.getStallName()) {
+                    throw new EntityExistsException("Existing stallholder with this name.");
+                }
             }
+
         });
 
         // Load existing stallholder (if exists)
@@ -72,7 +78,7 @@ public class AdminService {
         }
 
         // Update stallholder fields to match request
-        existingStallholder.get().setName(stallholderRequest.getName());
+        existingStallholder.get().setStallName(stallholderRequest.getStallName());
         existingStallholder.get().setCategory(stallholderRequest.getCategory());
         existingStallholder.get().setContactName(stallholderRequest.getContactName());
         existingStallholder.get().setPreferredName(stallholderRequest.getPreferredName());

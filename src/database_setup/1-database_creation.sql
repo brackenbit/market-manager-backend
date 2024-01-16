@@ -15,7 +15,7 @@ USE `marketmanagerdatabase`;
 DROP TABLE IF EXISTS `stallholder`;
 CREATE TABLE `stallholder` (
     `id` BIGINT(20) NOT NULL UNIQUE AUTO_INCREMENT,
-    `name` VARCHAR(45) DEFAULT NULL,
+    `stall_name` VARCHAR(45) DEFAULT NULL,
     `category` VARCHAR(45) DEFAULT NULL,
     `contact_name` VARCHAR(45) DEFAULT NULL,
     `preferred_name` VARCHAR(45) DEFAULT NULL,

@@ -17,15 +17,15 @@ public interface StallholderRepository extends JpaRepository<Stallholder, Long> 
 
     // findAllByOrderByNameAsc is the "default GET" for this repo
     // Default findAll returns sorted by id, which is no good.
-    Page<Stallholder> findAllByOrderByNameAsc(Pageable pageable);
+    Page<Stallholder> findAllByOrderByStallNameAsc(Pageable pageable);
 
-    Optional<Stallholder> findByName(String name);
+    Optional<Stallholder> findByStallName(String name);
 
-    Page<Stallholder> findByNameContaining(@RequestParam("name") String name, Pageable pageable);
+    Page<Stallholder> findByStallNameContaining(@RequestParam("stallName") String stallName, Pageable pageable);
 
     Page<Stallholder> findByCategory(@RequestParam("category") String category, Pageable pageable);
 
-    Page<Stallholder> findByNameContainingAndCategory(@RequestParam("name") String name,
+    Page<Stallholder> findByStallNameContainingAndCategory(@RequestParam("stallName") String stallName,
             @RequestParam("category") String category, Pageable pageable);
 
 }

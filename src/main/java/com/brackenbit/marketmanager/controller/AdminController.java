@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.brackenbit.marketmanager.entity.Stallholder;
 import com.brackenbit.marketmanager.requestModels.StallholderAttributeRequest;
 import com.brackenbit.marketmanager.service.AdminService;
 import com.brackenbit.marketmanager.utils.ExtractJWT;

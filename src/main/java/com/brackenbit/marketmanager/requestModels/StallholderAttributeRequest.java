@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 public class StallholderAttributeRequest {
 
-    private String name;
+    private String stallName;
     private String category;
     private String contactName;
     private String preferredName;

@@ -24,7 +24,7 @@ public class Stallholder {
     @Column(name = "id")
     private Long id;
 
-    private String name;
+    private String stallName;
 
     private String category;
 
