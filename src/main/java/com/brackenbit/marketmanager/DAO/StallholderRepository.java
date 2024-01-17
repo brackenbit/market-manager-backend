@@ -19,7 +19,7 @@ public interface StallholderRepository extends JpaRepository<Stallholder, Long> 
     // Default findAll returns sorted by id, which is no good.
     Page<Stallholder> findAllByOrderByStallNameAsc(Pageable pageable);
 
-    Optional<Stallholder> findByStallName(String name);
+    Optional<Stallholder> findByStallName(String stallName);
 
     Page<Stallholder> findByStallNameContaining(@RequestParam("stallName") String stallName, Pageable pageable);
 
